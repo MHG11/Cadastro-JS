@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Hello, World!</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+      <table>
+        <tr>
+          <th name="tabela1" id="tabela1" class="coluna">
+              <div name="div1" id="div1">
+                <input type="radio" name="tipo" id="Cadastrar_" value="cadastrar" disabled="true">Cadastrar</input>
+                <input type="radio" name="tipo" id="alter_" value="alterar" disabled="true">Alterar</input>
+                <input type="radio" name="tipo" id="exibir_" value="exibir" disabled="true">Exibir</input>
+                <input type="radio" name="tipo" id="excluir_" value="excluir" disabled="true">Excluir</input>
+                <input type="radio" name="tipo" id="login_" value="login">Login</input>
+              </div>
+            
+          </th>
+        </tr>
+      </table><br>
+      <table id="tabelaCadastro">
+        <tr>
+          <th name="tabela" id="tabela2" class="coluna2">
+            <div id="formularioCadastro">
+                <form>
+                  CPF: <input type="text" name="cpf" id="cpf"><br>
+                  NOME: <input type="text" name="nome" id="nome"><br>
+                  USUARIO: <input type="text" name="usuario" id="usuario"><br>
+                  SENHA: <input type="password" name="senha" id="senha"><br>
+                  <button onclick="salvarCadastro()">Cadastrar</button> 
+                </form>
+              </div>
+          </th>
+        </tr>
+      </table>
+      
+      
+      <table id="tabelaAlterar">
+        <tr>
+          <th name="tabela" id="tabela3" class="coluna3">
+            <div id="formularioCadastro">
+                <form>
+                  CPF: <input type="text" name="cpf" id="cpf"><br>
+                  NOME: <input type="text" name="nome" id="nome"><br>
+                  USUARIO: <input type="text" name="usuario" id="usuario"><br>
+                  SENHA: <input type="password" name="senha" id="senha">
+                  <button onclick="salvarCadastro()">Cadastrar</button> 
+                </form>
+              </div>
+          </th>
+        </tr>
+      </table>
+      
+      
+      <table id="tabelaExibir">
+        <tr>
+          <th name="tabela" id="tabela3" class="coluna3">
+            <div id="tabelaUsuarios">
+               <th>
+                 <input type="radio" name="funcionarioExibir" id="showFuncionario" disabled="true" >
+               </th>
+            </div>
+          </th>
+        </tr>
+      </table>
+      
+      
+      <table id="tabelaExcluir">
+        <tr>
+          <th name="tabela" id="tabela4" class="coluna4">
+            <div id="formularioCadastro">
+                <form>
+                  CPF: <input type="text" name="cpf" id="cpf"><br>
+                  NOME: <input type="text" name="nome" id="nome"><br>
+                  USUARIO: <input type="text" name="usuario" id="usuario"><br>
+                  SENHA: <input type="password" name="senha" id="senha">
+                  <button onclick="salvarCadastro()">Cadastrar</button> 
+                </form>
+              </div>
+          </th>
+        </tr>
+      </table>
+      
+      
+      <table id="tabelaLogin">
+        <tr>
+          <th name="tabela">
+            <div id="formularioCadastro">
+                <form>
+                  USUARIO: <input type="text" name="usuario" id="usuario"><br><br>
+                  SENHA: <input type="password" name="senha" id="senha"><br><br>
+                  <button onclick="fazerLogin()">Logar</button><br><br>
+                  <button id="botaoFazerCadastro">Não tenho conta</button>
+                </form>
+              </div>
+          </th>
+        </tr>
+      </table>
+      
+      <table id="tabelaResultados">
+        <tr>
+          <th name="tabela">
+            <div id="result">
+              
+            </div>
+          </th>
+        </tr>
+      </table>
+      <script>
+        
+        let pessoas = []
+        
+        document.getElementById("botaoFazerCadastro").addEventListener("click", (e) => {
+          e.preventDefault()
+          
+          document.getElementById('Cadastrar_').checked = true
+          
+          document.getElementById('Cadastrar_').dispatchEvent(new Event("click"))
+          
+        })
+        
+        function salvarCadastro(){
+          const pessoa = {
+            cpf: document.getElementById("cpf").value,
+            nome: document.getElementById("nome").value,
+            usuario: document.getElementById("usuario").value,
+            senha: document.getElementById("senha").value
+          }
+          
+          
+          
+          
+          if(!cpf || !nome || !usuario || !senha){
+            alert("Preencha todos os campos!!")
+            return
+          }
+          
+          pessoas.push(pessoa)
+          
+          
+          
+        }
+        
+        function mostrarTabela(IdTabela){
+            document.querySelectorAll(".tabela").forEach(tab => tab.style.display = "none")
+            
+            if(IdTabela){
+              document.getElementById(IdTabela).style.display = "block"
+            }
+            
+            document.querySelectorAll("input[name=tipo]").forEach(radio => {
+              radio.addEventListener("change", () => {
+              if(radio.checked){
+                if(radio.value === "cadastrar"){
+                  mostrarTabela("tabelaCadastro")
+                }
+                if(radio.value === "login"){
+                  mostrarTabela("tabelaLogin")
+                }
+                if(radio.value === "alterar"){
+                  mostrarTabela("tabelaAlterar")
+                }
+                if(radio.value === "exibir"){
+                  mostrarTabela("tabelaExibir")
+                }
+                if(radio.value === "excluir"){
+                  mostrarTabela("tabelaExcluir")
+                }
+                
+              }
+            })
+            })
+        }
+        /*
+        function atualizarTabelaUsuario(){
+          
+        }
+        */
+      </script>
+  </body>
+</html>
