@@ -2,14 +2,15 @@
 <html>
   <head>
     <title>Hello, World!</title>
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
       <table>
         <tr>
-          <th name="tabela1" id="tabela1" class="coluna">
+          <th name="tabela1" id="tabela1" class="op">
               <div name="div1" id="div1">
                 <input type="radio" name="tipo" id="Cadastrar_" value="cadastrar" disabled="true">Cadastrar</input>
+                <input type="radio" name="tipo" id="PrimeiroCadastrar_" value="PrimeiroCadastro" ></input>
                 <input type="radio" name="tipo" id="alter_" value="alterar" disabled="true">Alterar</input>
                 <input type="radio" name="tipo" id="exibir_" value="exibir" disabled="true">Exibir</input>
                 <input type="radio" name="tipo" id="excluir_" value="excluir" disabled="true">Excluir</input>
@@ -19,16 +20,32 @@
           </th>
         </tr>
       </table><br>
-      <table id="tabelaCadastro">
+      <table id="tabelaCadastro" class="tabela">
         <tr>
-          <th name="tabela" id="tabela2" class="coluna2">
+          <th name="tabela" id="tabela2" >
             <div id="formularioCadastro">
                 <form>
                   CPF: <input type="text" name="cpf" id="cpf"><br>
-                  NOME: <input type="text" name="nome" id="nome"><br>
-                  USUARIO: <input type="text" name="usuario" id="usuario"><br>
-                  SENHA: <input type="password" name="senha" id="senha"><br>
-                  <button onclick="salvarCadastro()">Cadastrar</button> 
+                  NOME: <input type="text" name="nome" id="nome_usu"><br>
+                  USUARIO: <input type="text" name="usuario" id="cadastro_usuario"><br>
+                  SENHA: <input type="password" name="senha" id="cadastro_senha"><br>
+                  <button type="button" onclick="salvarCadastro()">Cadastrar</button> 
+                </form>
+              </div>
+          </th>
+        </tr>
+      </table>
+
+      <table id="tabelaPrimeiroCadastro" class="tabela">
+        <tr>
+          <th name="tabela" id="tabela2" >
+            <div id="formularioCadastro">
+                <form>
+                  CPF: <input type="text" name="cpf" id="cpf_primeiro"><br>
+                  NOME: <input type="text" name="nome" id="nome_usu_primeiro"><br>
+                  USUARIO: <input type="text" name="usuario" id="cadastro_usuario_primeiro"><br>
+                  SENHA: <input type="password" name="senha" id="cadastro_senha_primeiro"><br>
+                  <button type="button" onclick="salvarPrimeiroCadastro()">Cadastrar</button> 
                 </form>
               </div>
           </th>
@@ -36,16 +53,12 @@
       </table>
       
       
-      <table id="tabelaAlterar">
+      <table id="tabelaAlterar" class="tabela">
         <tr>
-          <th name="tabela" id="tabela3" class="coluna3">
-            <div id="formularioCadastro">
+          <th>
+            <div id="">
                 <form>
-                  CPF: <input type="text" name="cpf" id="cpf"><br>
-                  NOME: <input type="text" name="nome" id="nome"><br>
-                  USUARIO: <input type="text" name="usuario" id="usuario"><br>
-                  SENHA: <input type="password" name="senha" id="senha">
-                  <button onclick="salvarCadastro()">Cadastrar</button> 
+              
                 </form>
               </div>
           </th>
@@ -53,9 +66,9 @@
       </table>
       
       
-      <table id="tabelaExibir">
+      <table id="tabelaExibir" class="tabela">
         <tr>
-          <th name="tabela" id="tabela3" class="coluna3">
+          <th name="tabela" id="tabela3" >
             <div id="tabelaUsuarios">
                <th>
                  <input type="radio" name="funcionarioExibir" id="showFuncionario" disabled="true" >
@@ -66,16 +79,11 @@
       </table>
       
       
-      <table id="tabelaExcluir">
+      <table id="tabelaExcluir" class="tabela">
         <tr>
-          <th name="tabela" id="tabela4" class="coluna4">
+          <th name="tabela" id="tabela4" >
             <div id="formularioCadastro">
-                <form>
-                  CPF: <input type="text" name="cpf" id="cpf"><br>
-                  NOME: <input type="text" name="nome" id="nome"><br>
-                  USUARIO: <input type="text" name="usuario" id="usuario"><br>
-                  SENHA: <input type="password" name="senha" id="senha">
-                  <button onclick="salvarCadastro()">Cadastrar</button> 
+                <form> 
                 </form>
               </div>
           </th>
@@ -83,26 +91,26 @@
       </table>
       
       
-      <table id="tabelaLogin">
+      <table id="tabelaLogin" class="tabela">
         <tr>
-          <th name="tabela">
-            <div id="formularioCadastro">
+          <th name="tabela" >
+            <div>
                 <form>
-                  USUARIO: <input type="text" name="usuario" id="usuario"><br><br>
-                  SENHA: <input type="password" name="senha" id="senha"><br><br>
-                  <button onclick="fazerLogin()">Logar</button><br><br>
-                  <button id="botaoFazerCadastro">Não tenho conta</button>
+                  USUARIO: <input type="text" name="usuario" id="login_usuario"><br><br>
+                  SENHA: <input type="password" name="senha" id="login_senha"><br><br>
+                  <button type="button" onclick="fazerLogin()">Logar</button><br><br>
+                  <button onclick="mostrarTabela('tabelaPrimeiroCadastro')">Não tenho conta</button>
                 </form>
               </div>
           </th>
         </tr>
       </table>
       
-      <table id="tabelaResultados">
+      <table id="tabelaResultados" class="tabela">
         <tr>
-          <th name="tabela">
+          <th>
             <div id="result">
-              
+
             </div>
           </th>
         </tr>
@@ -110,36 +118,54 @@
       <script>
         
         let pessoas = []
-        
+        /*
         document.getElementById("botaoFazerCadastro").addEventListener("click", (e) => {
           e.preventDefault()
           
-          document.getElementById('Cadastrar_').checked = true
-          
-          document.getElementById('Cadastrar_').dispatchEvent(new Event("click"))
-          
+          document.getElementById('PrimeiroCadastrar_').checked = true
+
+          document.getElementById('PrimeiroCadastrar_').dispatchEvent(new Event("click"))
+
         })
+        */
+        function salvarPrimeiroCadastro(){
         
-        function salvarCadastro(){
           const pessoa = {
-            cpf: document.getElementById("cpf").value,
-            nome: document.getElementById("nome").value,
-            usuario: document.getElementById("usuario").value,
-            senha: document.getElementById("senha").value
+            cpf: document.getElementById("cpf_primeiro").value,
+            nome: document.getElementById("nome_usu_primeiro").value,
+            usuario: document.getElementById("cadastro_usuario_primeiro").value,
+            senha: document.getElementById("cadastro_senha_primeiro").value
           }
-          
-          
-          
-          
-          if(!cpf || !nome || !usuario || !senha){
+
+          if(pessoa.cpf === '' || pessoa.nome === '' || pessoa.usuario === '' || pessoa.senha === ''){
             alert("Preencha todos os campos!!")
             return
           }
-          
+
           pessoas.push(pessoa)
-          
-          
-          
+        }
+
+        function fazerLogin(){
+      
+          const usuario = document.getElementById("login_usuario").value
+          const senha = document.getElementById("login_senha").value
+
+          const pessoaEncontrada = pessoas.find(pessoa => pessoa.usuario === usuario && pessoa.senha === senha)
+
+          if(pessoaEncontrada){
+            alert(`Bem vindo, ${pessoaEncontrada.nome}`)
+            document.getElementById('Cadastrar_').disabled = false
+            document.getElementById('alter_').disabled = false
+            document.getElementById('exibir_').disabled = false
+            document.getElementById('excluir_').disabled = false
+            
+            document.getElementById('login_').disabled = false
+            
+            document.getElementById('exibir_').checked = true
+            document.getElementById('exibir_').dispatchEvent(new Event("click"))
+          } else {
+            alert("Usuário ou senha inválidos")
+          }
         }
         
         function mostrarTabela(IdTabela){
@@ -150,7 +176,7 @@
             }
             
             document.querySelectorAll("input[name=tipo]").forEach(radio => {
-              radio.addEventListener("change", () => {
+              radio.addEventListener("click", () => {
               if(radio.checked){
                 if(radio.value === "cadastrar"){
                   mostrarTabela("tabelaCadastro")
@@ -167,6 +193,9 @@
                 if(radio.value === "excluir"){
                   mostrarTabela("tabelaExcluir")
                 }
+                if(radio.value === "PrimeiroCadastro"){
+                  mostrarTabela("tabelaPrimeiroCadastro")
+                }
                 
               }
             })
@@ -177,6 +206,7 @@
           
         }
         */
+      mostrarTabela()
       </script>
   </body>
 </html>

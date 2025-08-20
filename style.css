@@ -1,0 +1,67 @@
+body{
+  padding: 25px;
+}
+.title {
+	color: #5C6AC4;
+}
+#nome {
+  color: red;
+}
+th {
+  width: 50%
+}
+#dados {
+  border: 1px solid;
+  padding:16px;
+  text-align: left;
+}
+
+table {
+  border: 1px solid;
+  padding:16px;
+  width: 100%;
+  text-align: center;
+}
+
+#formularioCadastro {
+  padding:8px;
+  width: 100%;
+  text-align: left;
+}
+
+#tabelaCadastro{
+  display: none;
+}
+
+
+#tabelaLogin {
+  display: none;
+}
+
+#tabelaAlterar {
+  display: none;
+}
+
+#tabelaExcluir{
+  display: none;
+}
+
+#tabelaExibir{
+  display: none;
+}
+
+#tabelaResultados{
+  display: none;
+}
+
+#tabelaPrimeiroCadastro {
+  display: none;
+}
+
+table th, table td {
+  text-align: left;
+}
+
+#PrimeiroCadastrar_ {
+  display: none;
+}
